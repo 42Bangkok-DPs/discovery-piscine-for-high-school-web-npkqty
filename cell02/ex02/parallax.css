@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.parallax {
+    /* Set the height for the parallax section */
+    height: 100vh;
+    background-image: url('https://th.bing.com/th/id/OIP.4chmqjWyBwZdG3JPcRFQmQHaE8?rs=1&pid=ImgDetMain'); /* Replace with your first image URL */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.black-block {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.centered-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2em;
+}
+
+#section2 {
+    background-image: url('https://i.pinimg.com/originals/59/54/b4/5954b408c66525ad932faa693a647e3f.jpg'); /* Replace with your second image URL */
+}
