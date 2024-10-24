@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #ft_list {
+            margin: 20px;
+        }
+        .todo-item {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="ft_list"></div>
+    <button id="newTodo">New</button>
+    <script>
+        $(document).ready(function() {
+            function loadTodos() {
+                const todos = JSON.parse(localStorage.getItem('todos')) || [];
+                todos.forEach(todo => {
+                    $('#ft_list').prepend(`<div class="todo-item">${todo}</div>`);
+                });
+            }
+
+            loadTodos();
+
+            $('#newTodo').click(function() {
+                const newTodo = prompt('Enter new TO DO:');
+                if (newTodo) {
+                    $('#ft_list').prepend(`<div class="todo-item">${newTodo}</div>`);
+                    saveTodos();
+                }
+            });
+
+            $(document).on('click', '.todo-item', function() {
+                if (confirm('Do you want to remove this TO DO?')) {
+                    $(this).remove();
+                    saveTodos();
+                }
+            });
+
+            function saveTodos() {
+                const todos = [];
+                $('.todo-item').each(function() {
+                    todos.push($(this).text());
+                });
+                localStorage.setItem('todos', JSON.stringify(todos));
+            }
+        });
+    </script>
+</body>
+</html>

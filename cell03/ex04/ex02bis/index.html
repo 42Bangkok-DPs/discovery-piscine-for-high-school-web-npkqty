@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <input type="number" id="leftOperand" placeholder="Left Operand" min="0">
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="number" id="rightOperand" placeholder="Right Operand" min="0">
+    <input type="submit" value="Try me!" id="calculate">
+    <script>
+        $(document).ready(function() {
+            $('#calculate').click(function() {
+                const left = parseInt($('#leftOperand').val());
+                const operator = $('#operator').val();
+                const right = parseInt($('#rightOperand').val());
+                
+                if (isNaN(left) || isNaN(right) || left < 0 || right < 0) {
+                    alert('Error :(');
+                    return;
+                }
+                if ((operator === '/' || operator === '%') && right === 0) {
+                    alert("It's over 9000!");
+                    return;
+                }
+
+                let result;
+                switch (operator) {
+                    case '+':
+                        result = left + right;
+                        break;
+                    case '-':
+                        result = left - right;
+                        break;
+                    case '*':
+                        result = left * right;
+                        break;
+                    case '/':
+                        result = left / right;
+                        break;
+                    case '%':
+                        result = left % right;
+                        break;
+                }
+                alert(`Result: ${result}`);
+                console.log(result);
+            });
+
+            setInterval(function() {
+                alert('Please, use me...');
+            }, 30000);
+        });
+    </script>
+</body>
+</html>
