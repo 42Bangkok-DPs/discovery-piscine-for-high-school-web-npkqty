@@ -3,57 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>Task Management</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="todo.js" defer></script>
     <style>
-        #ft_list {
-            margin: 20px;
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
-        .todo-item {
-            padding: 10px;
+        #ft_list {
+            margin-bottom: 20px;
             border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 300px;
+        }
+        .todo_item {
+            padding: 5px;
             margin: 5px 0;
+            background-color: #f9f9f9;
             cursor: pointer;
+            border: 1px solid #ddd;
+        }
+        .todo_item:hover {
+            background-color: #e9e9e9;
         }
     </style>
 </head>
 <body>
-    <div id="ft_list"></div>
-    <button id="newTodo">New</button>
-    <script>
-        $(document).ready(function() {
-            function loadTodos() {
-                const todos = JSON.parse(localStorage.getItem('todos')) || [];
-                todos.forEach(todo => {
-                    $('#ft_list').prepend(`<div class="todo-item">${todo}</div>`);
-                });
-            }
-
-            loadTodos();
-
-            $('#newTodo').click(function() {
-                const newTodo = prompt('Enter new TO DO:');
-                if (newTodo) {
-                    $('#ft_list').prepend(`<div class="todo-item">${newTodo}</div>`);
-                    saveTodos();
-                }
-            });
-
-            $(document).on('click', '.todo-item', function() {
-                if (confirm('Do you want to remove this TO DO?')) {
-                    $(this).remove();
-                    saveTodos();
-                }
-            });
-
-            function saveTodos() {
-                const todos = [];
-                $('.todo-item').each(function() {
-                    todos.push($(this).text());
-                });
-                localStorage.setItem('todos', JSON.stringify(todos));
-            }
-        });
-    </script>
+    <div id="ft_list">
+        <!-- To Do items will be added here -->
+    </div>
+    <button id="new_todo">New</button>
 </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Animation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            const colors = ['red', 'green', 'blue'];
+            let currentIndex = 0;
+            let isClicked = false;
+
+            $('#balloon').click(function() {
+                // Grow the balloon
+                let newSize = $(this).width() + 10;
+                if (newSize > 420) {
+                    newSize = 200; // Explode back to original size
+                }
+                $(this).css({ width: newSize, height: newSize });
+
+                // Change color
+                currentIndex = (currentIndex + 1) % colors.length;
+                $(this).css('background-color', colors[currentIndex]);
+                isClicked = true; // Mark as clicked
+            });
+
+            $('#balloon').mouseleave(function() {
+                // Shrink the balloon
+                let newSize = $(this).width() - 5;
+                if (newSize < 200) newSize = 200; // Prevent going below original size
+                $(this).css({ width: newSize, height: newSize });
+
+                // Change color in reverse order only if clicked
+                if (isClicked) {
+                    currentIndex = (currentIndex - 1 + colors.length) % colors.length;
+                    $(this).css('background-color', colors[currentIndex]);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="balloon"></div>
+</body>
+</html>

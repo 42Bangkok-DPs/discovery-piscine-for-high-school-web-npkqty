@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        input, select {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            let alertTimer;
+
+            $('#calculateButton').click(function() {
+                clearTimeout(alertTimer); // Clear the timer when button is clicked
+                startAlertTimer(); // Restart the timer
+
+                const leftInput = $('#leftInput').val();
+                const operator = $('#operatorSelect').val();
+                const rightInput = $('#rightInput').val();
+
+                // Check if inputs are valid numbers
+                const leftNumber = parseInt(leftInput);
+                const rightNumber = parseInt(rightInput);
+
+                if (!isValidInput(leftInput) || !isValidInput(rightInput)) {
+                    showError();
+                    return;
+                }
+
+                // Perform calculation
+                let result;
+                switch (operator) {
+                    case '+':
+                        result = leftNumber + rightNumber;
+                        break;
+                    case '-':
+                        result = leftNumber - rightNumber;
+                        break;
+                    case '*':
+                        result = leftNumber * rightNumber;
+                        break;
+                    case '/':
+                        if (rightNumber === 0) {
+                            alert("It's over 9000!");
+                            console.log("It's over 9000!");
+                            return;
+                        }
+                        result = leftNumber / rightNumber;
+                        break;
+                    case '%':
+                        if (rightNumber === 0) {
+                            alert("It's over 9000!");
+                            console.log("It's over 9000!");
+                            return;
+                        }
+                        result = leftNumber % rightNumber;
+                        break;
+                }
+
+                alert(result);
+                console.log(result);
+            });
+
+            // Function to check if the input is a valid positive integer
+            function isValidInput(input) {
+                const num = parseInt(input);
+                return !isNaN(num) && num >= 0 && input.trim() === num.toString();
+            }
+
+            // Function to show error message
+            function showError() {
+                alert("Error :(");
+                console.log("Error :(");
+            }
+
+            // Function to start the alert timer
+            function startAlertTimer() {
+                alertTimer = setTimeout(function() {
+                    alert("Please, use me...");
+                }, 30000);
+            }
+        });
+    </script>
+</head>
+<body>
+    <input type="text" id="leftInput" placeholder="Left Operand">
+    <select id="operatorSelect">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="text" id="rightInput" placeholder="Right Operand">
+    <button id="calculateButton">Try me!</button>
+</body>
+</html>
