@@ -123,7 +123,7 @@ p {
 }
 
 #profile {
-    width: 400px;
+    width: 20%;
     max-width: 100%; /* Responsive image */
     height: auto; /* Maintain aspect ratio */
 }
