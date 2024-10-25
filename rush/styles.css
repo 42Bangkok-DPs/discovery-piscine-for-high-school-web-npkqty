@@ -22,16 +22,19 @@ section {
 
 h1 {
     padding-top: 100px;
-    font-size: 100px;
-    height: 600px;
+    font-size: 100px; /* Large heading for larger screens */
     margin-top: 100px;
-    flex: auto;
+    display: flex;
     flex-direction: column;
+    text-align: center; /* Center align text */
 }
 
 p {
-    font-size: 40px;
+    font-size: 40px; /* Large paragraph for larger screens */
     background-color: rgba(146, 138, 47, 0.671);
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0; /* Added margin for spacing */
 }
 
 #home {
@@ -49,19 +52,55 @@ p {
 
 .portfolio-links {
     margin-top: 20px;
-    height: 55%;
+    display: flex; /* Use flexbox to align buttons next to each other */
+    justify-content: center; /* Center the buttons horizontally */
+    flex-wrap: wrap; /* Allow buttons to wrap if there's not enough space */
 }
-    
+
 .portfolio-links .button {
     text-decoration: none;
     color: white;
     background-color: rgb(241, 223, 91);
-    padding: 15px 30px;
+    padding: 15px 35px;
     border-radius: 5px;
-    margin: 10px;
+    margin: 10px; /* Margin around buttons */
     transition: background-color 0.3s;
+    max-width: 150px; /* Set a maximum width for buttons */
+    flex: 1; /* Allow buttons to grow */
+    min-width: 200px; /* Minimum width for buttons */
 }
 
 .portfolio-links .button:hover {
     background-color: rgb(255, 196, 0);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 50px; /* Adjust heading size for smaller screens */
+    }
+
+    p {
+        font-size: 24px; /* Adjust paragraph size for smaller screens */
+    }
+
+    .portfolio-links {
+        margin-top: 10px; /* Adjust spacing for smaller screens */
+    }
+
+    .portfolio-links .button {
+        padding: 12px 20px; /* Adjust button padding */
+        font-size: 18px; /* Adjust button text size */
+        width: 90%; /* Make buttons wider on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 30px; /* Further adjust heading size for very small screens */
+    }
+
+    p {
+        font-size: 20px; /* Further adjust paragraph size */
+    }
 }
